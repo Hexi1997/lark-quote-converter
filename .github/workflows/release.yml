@@ -15,10 +15,10 @@ jobs:
 
       - name: Package as ZIP
         run: |
-          zip -r "${GITHUB_WORKSPACE}/${{ github.ref }}.zip" . -x "*.git*"
+          zip -r "${GITHUB_WORKSPACE}/${{ github.ref_name }}.zip" . -x "*.git*"
 
       - name: Upload ZIP
         uses: actions/upload-artifact@v4 # Updated to the latest version
         with:
           name: release
-          path: "${GITHUB_WORKSPACE}/${{ github.ref }}.zip"
+          path: "${GITHUB_WORKSPACE}/${{ github.ref_name }}.zip"
