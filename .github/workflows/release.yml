@@ -23,6 +23,9 @@ jobs:
           name: release
           path: "${GITHUB_WORKSPACE}/${{ github.ref_name }}.zip"
 
+      - name: List files
+        run: ls -la ${GITHUB_WORKSPACE}  # 列出文件以确认 ZIP 文件是否存在
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
