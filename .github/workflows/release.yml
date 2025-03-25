@@ -18,7 +18,7 @@ jobs:
           zip -r "${GITHUB_WORKSPACE}/${{ github.ref }}.zip" . -x "*.git*"
 
       - name: Upload ZIP
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3 # Updated to the latest version
         with:
           name: release
           path: "${GITHUB_WORKSPACE}/${{ github.ref }}.zip"
