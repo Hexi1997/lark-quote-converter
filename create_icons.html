@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lark Quote Converter Icon Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .canvas-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .icon-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    canvas {
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .color-picker {
+      margin: 20px 0;
+    }
+    input[type="color"] {
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lark Quote Converter Icon Generator</h1>
+    
+    <div class="color-picker">
+      <label>Background Color: </label>
+      <input type="color" id="bgColor" value="#4285f4">
+      <label>Text Color: </label>
+      <input type="color" id="textColor" value="#ffffff">
+    </div>
+    
+    <div class="canvas-container">
+      <div class="icon-preview">
+        <canvas id="canvas16" width="16" height="16"></canvas>
+        <span>16x16</span>
+      </div>
+      <div class="icon-preview">
+        <canvas id="canvas48" width="48" height="48"></canvas>
+        <span>48x48</span>
+      </div>
+      <div class="icon-preview">
+        <canvas id="canvas128" width="128" height="128"></canvas>
+        <span>128x128</span>
+      </div>
+    </div>
+    
+    <div>
+      <button id="generateBtn">Regenerate</button>
+      <button id="downloadAllBtn">Download All Icons</button>
+    </div>
+  </div>
+
+  <script>
+    // Get elements
+    const canvas16 = document.getElementById('canvas16');
+    const canvas48 = document.getElementById('canvas48');
+    const canvas128 = document.getElementById('canvas128');
+    const bgColorPicker = document.getElementById('bgColor');
+    const textColorPicker = document.getElementById('textColor');
+    const generateBtn = document.getElementById('generateBtn');
+    const downloadAllBtn = document.getElementById('downloadAllBtn');
+    
+    // Draw icon function
+    function drawIcon(canvas, bgColor, textColor) {
+      const ctx = canvas.getContext('2d');
+      const size = canvas.width;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, size, size);
+      
+      // Draw circular background
+      ctx.fillStyle = bgColor;
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Draw quote symbol
+      ctx.fillStyle = textColor;
+      ctx.font = `bold ${size * 1}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`''`, size/2, size/1.3);
+    }
+    
+    // Generate all icons
+    function generateAllIcons() {
+      const bgColor = bgColorPicker.value;
+      const textColor = textColorPicker.value;
+      
+      drawIcon(canvas16, bgColor, textColor);
+      drawIcon(canvas48, bgColor, textColor);
+      drawIcon(canvas128, bgColor, textColor);
+    }
+    
+    // Download single icon
+    function downloadIcon(canvas, filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+    
+    // Download all icons
+    function downloadAllIcons() {
+      downloadIcon(canvas16, 'icon16.png');
+      downloadIcon(canvas48, 'icon48.png');
+      downloadIcon(canvas128, 'icon128.png');
+    }
+    
+    // Event listeners
+    generateBtn.addEventListener('click', generateAllIcons);
+    downloadAllBtn.addEventListener('click', downloadAllIcons);
+    bgColorPicker.addEventListener('change', generateAllIcons);
+    textColorPicker.addEventListener('change', generateAllIcons);
+    
+    // Initial generation
+    generateAllIcons();
+  </script>
+</body>
+</html> 
