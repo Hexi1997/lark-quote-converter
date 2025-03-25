@@ -18,7 +18,7 @@ jobs:
 
       - name: Package as ZIP
         run: |
-          zip -r "${GITHUB_WORKSPACE}/${{ github.ref_name }}.zip" . -x "*.git*"
+          zip -r "${{ github.ref_name }}.zip" . -x "*.git*"
 
       - name: Upload ZIP
         uses: actions/upload-artifact@v4 # Updated to the latest version
@@ -26,15 +26,12 @@ jobs:
           name: release
           path: "${{ github.ref_name }}.zip"
 
-      - name: List files
-        run: ls -la ${GITHUB_WORKSPACE}  # 列出文件以确认 ZIP 文件是否存在
-
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          body: "自动生成的 Release，包含版本 ${GITHUB_REF_NAME} 的构建文件。"
+          body: "Automatically generated release containing build files for version ${{ github.ref_name }}."
           files: "${{ github.ref_name }}.zip"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 直接使用自动生成的令牌
