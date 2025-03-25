@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Lark Quote Converter",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Automatically converts smart quotes to standard quotes when copying from Lark documents",
   "permissions": ["clipboardWrite", "clipboardRead", "activeTab"],
   "content_scripts": [
