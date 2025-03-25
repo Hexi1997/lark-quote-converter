@@ -22,3 +22,13 @@ jobs:
         with:
           name: release
           path: "${GITHUB_WORKSPACE}/${{ github.ref_name }}.zip"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: "自动生成的 Release，包含版本 ${GITHUB_REF_NAME} 的构建文件。"
+          files: "${GITHUB_WORKSPACE}/${{ github.ref_name }}.zip"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 直接使用自动生成的令牌
