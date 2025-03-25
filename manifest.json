@@ -7,10 +7,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.larksuite.com/*", 
-        "*://*.feishu.cn/*", 
-        "*://*.lark.com/*",
-        "*://*.sg.larksuite.com/*"
+        "*://*.larksuite.com/*"
       ],
       "js": ["content.js"]
     }
@@ -20,6 +17,6 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "author": "Your Name",
-  "homepage_url": "https://github.com/yourusername/lark-quote-converter"
+  "author": "Hexi1997",
+  "homepage_url": "https://github.com/Hexi1997/lark-quote-converter"
 } 
